@@ -1,0 +1,47 @@
+---------------Main display features--------------- 
+1. Admin Login 
+2. Customer Login 
+3. New Customer ? Register here
+4. Forget Id / Password
+
+---------------Customer Account details--------------- 
+First Name
+Middle Name
+Last Name
+Gender
+Date Of birth(yyyy/mm/dd)
+Customer Id
+Account Number
+Account type
+Mobile Number
+Email Id
+Password
+Opening Balance
+
+-------------------Customer service-------------------
+
+Balance
+
+Transactions
+
+View last 10 Transactions
+
+View account statements online
+
+Account-to-Account transfer
+
+ATM & Bank Locator
+
+Order for a cheque book and Cards
+
+
+-------------------Admin service-------------------
+
+View customer details with account number or cutomer id or mobile number
+
+Update customer details 
+
+close customer account 
+
+View all customer of bank 
+
