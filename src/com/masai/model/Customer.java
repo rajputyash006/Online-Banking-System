@@ -4,6 +4,23 @@ public class Customer {
 	private String firstName;
 	private String lastName;
 	private String gender;
+	private String mobileNo;
+	private String email;
+	private String username;
+	private String password;
+	private String accountType;
+	private Double accountBalance;
+	private int accountNumber;
+	
+	public int getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+
 	private String dob;
 	private String mobileNo;
 	private String email;
@@ -11,16 +28,26 @@ public class Customer {
 	private String accountType;
 	private String accountBalance;
 	
+
 	public Customer() {
 		super();
 	}
 
+	public Customer(String firstName, String lastName, String gender,String mobileNo, String email,String username,
+			String password,String acc, Double accountBalance) {
+
 	public Customer(String firstName, String lastName, String gender, String dob, String mobileNo, String email,
 			String password, String accountType, String accountBalance) {
+
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.gender = gender;
+		this.mobileNo = mobileNo;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.accountType = acc;
 		this.dob = dob;
 		this.mobileNo = mobileNo;
 		this.email = email;
@@ -77,6 +104,15 @@ public class Customer {
 		this.email = email;
 	}
 
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -93,6 +129,14 @@ public class Customer {
 		this.accountType = accountType;
 	}
 
+	public Double getAccountBalance() {
+		return accountBalance;
+	}
+
+	public void setAccountBalance(Double accountBalance) {
+		this.accountBalance = accountBalance;
+	}
+
 	public String getAccountBalance() {
 		return accountBalance;
 	}
@@ -100,5 +144,6 @@ public class Customer {
 	public void setAccountBalance(String accountBalance) {
 		this.accountBalance = accountBalance;
 	}
+
 	
 }
