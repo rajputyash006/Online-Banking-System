@@ -7,7 +7,11 @@ import java.sql.SQLException;
 public class DBUtil {
 	
 	
+
 	public static Connection provideConnection() {
+
+	public Connection provideConnection() {
+
 		Connection conn=null;
 		
 		try {
@@ -20,7 +24,11 @@ public class DBUtil {
 		String url="jdbc:mysql://localhost:3306/sb101_project";
 		
 		try {
+
 			conn=DriverManager.getConnection(url,"root","root");
+
+			DriverManager.getConnection(url,"root","root");
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

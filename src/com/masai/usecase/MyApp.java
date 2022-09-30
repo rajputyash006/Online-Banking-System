@@ -1,6 +1,7 @@
 package com.masai.usecase;
 
 
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,7 +13,12 @@ import com.masai.model.Customer;
 
 public class MyApp {
 	
-	
+
+import java.util.Scanner;
+
+public class MyApp {
+
+
 	public static void main(String[] args) {
 		System.out.println("----------------------------------------");
 		System.out.println("**  Welcome To Online Banking System  **");
@@ -23,16 +29,17 @@ public class MyApp {
 		System.out.println("4.Forget Id / Password");
 		System.out.println("5.Exit");
 		
+
 		CustomerDao dao=new CustomerImpl();
 		AdminDao adminDao=new AdminImpl();
-		
-		
+
 		
 		try {
 			Scanner sc=new Scanner(System.in);
 			int choice =sc.nextInt();
 			switch(choice) {
 			case 1:
+
 				System.out.println("Enter User Name");
 				String lauser=sc.next();
 				System.out.println("Enter Password");
@@ -194,6 +201,12 @@ public class MyApp {
 		    	Customer customer=new Customer(fname, lname, gender, mobile,email,user, pass,acc,balance);
 		    	String message=dao.customerRegistration(customer);
 		    	System.out.println(message);
+
+				break;
+			case 2:
+				break;
+		    case 3:
+
 		    	break;
 	        case 4:
 	        	break;
@@ -209,4 +222,3 @@ public class MyApp {
 	}
 
 }
-

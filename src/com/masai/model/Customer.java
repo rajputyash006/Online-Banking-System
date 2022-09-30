@@ -20,12 +20,25 @@ public class Customer {
 		this.accountNumber = accountNumber;
 	}
 
+
+	private String dob;
+	private String mobileNo;
+	private String email;
+	private String password;
+	private String accountType;
+	private String accountBalance;
+	
+
 	public Customer() {
 		super();
 	}
 
 	public Customer(String firstName, String lastName, String gender,String mobileNo, String email,String username,
 			String password,String acc, Double accountBalance) {
+
+	public Customer(String firstName, String lastName, String gender, String dob, String mobileNo, String email,
+			String password, String accountType, String accountBalance) {
+
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -35,6 +48,11 @@ public class Customer {
 		this.username = username;
 		this.password = password;
 		this.accountType = acc;
+		this.dob = dob;
+		this.mobileNo = mobileNo;
+		this.email = email;
+		this.password = password;
+		this.accountType = accountType;
 		this.accountBalance = accountBalance;
 	}
 
@@ -62,6 +80,14 @@ public class Customer {
 		this.gender = gender;
 	}
 
+	public String getDob() {
+		return dob;
+	}
+
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+
 	public String getMobileNo() {
 		return mobileNo;
 	}
@@ -77,6 +103,7 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 
 	public String getUsername() {
 		return username;
@@ -107,6 +134,14 @@ public class Customer {
 	}
 
 	public void setAccountBalance(Double accountBalance) {
+		this.accountBalance = accountBalance;
+	}
+
+	public String getAccountBalance() {
+		return accountBalance;
+	}
+
+	public void setAccountBalance(String accountBalance) {
 		this.accountBalance = accountBalance;
 	}
 

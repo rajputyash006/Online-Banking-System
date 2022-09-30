@@ -1,3 +1,4 @@
+
 -------New Databse creation-----------------
 create database sb101_project;
 
@@ -64,5 +65,4 @@ select * from transactions where accId=500001 Order by txtDateTime desc;
 --------------financial account statements---------------
 
 select txdId,txdAccount,txdAmount,txtDateTime from transactions INNER JOIN customers ON accId=accountNumber AND accId=500001 AND txtDateTime>'2020-01-01' AND txtDateTime<'2020-12-31';
-
 

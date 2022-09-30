@@ -1,5 +1,6 @@
 package com.masai.dao;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -86,6 +87,31 @@ public class CustomerImpl implements CustomerDao{
 		}
 		
 		return message;
+    
+import java.util.List;
+
+import com.masai.model.Customer;
+
+public class CustomerImpl implements CustomerDao{
+
+
+	@Override
+	public String customerRegistration(Customer customer) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double viewBalance() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double fundTransefer() {
+		// TODO Auto-generated method stub
+		return 0;
+
 	}
 
 	@Override
@@ -95,6 +121,7 @@ public class CustomerImpl implements CustomerDao{
 	}
 
 	@Override
+
 	public List<String> view_Last_5_Transactions(Customer cus) {
 		List<String> li=new ArrayList<String>();
 		
@@ -119,6 +146,11 @@ public class CustomerImpl implements CustomerDao{
 		}
 		
 		return li;
+
+	public List<String> view_Last_10_Transactions() {
+		// TODO Auto-generated method stub
+		return null;
+
 	}
 
 	@Override
@@ -138,6 +170,7 @@ public class CustomerImpl implements CustomerDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 	@Override
 	public Customer provideUserObject(String username) {
@@ -182,7 +215,5 @@ public class CustomerImpl implements CustomerDao{
 		return cus;
 	}
 
-	
-	
 
 }

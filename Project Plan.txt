@@ -6,9 +6,15 @@
 
 ---------------Customer Account details--------------- 
 First Name
+
 Last Name
 Gender
 Date Of birth(yyyy/mm/dd)
+Middle Name
+Last Name
+Gender
+Date Of birth(yyyy/mm/dd)
+Customer Id
 Account Number
 Account type
 Mobile Number
@@ -21,11 +27,19 @@ Opening Balance
 
 Balance
 
+
 View all Transactions
 
 View last 10 Transactions
 
 View financial account statements online
+
+Transactions
+
+View last 10 Transactions
+
+View account statements online
+
 
 Account-to-Account transfer
 
@@ -36,7 +50,10 @@ Order for a cheque book and Cards
 
 -------------------Admin service-------------------
 
+
 View customer details with account number
+
+View customer details with account number or cutomer id or mobile number
 
 Update customer details 
 
