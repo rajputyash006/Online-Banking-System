@@ -227,8 +227,14 @@ public class MyApp {
 								li.forEach(str->System.out.println(str));
 								break;
 							case 3:
+								List<String> liAll =dao.viewTransactions(currentUser);
+								liAll.forEach(str->System.out.println(str));
 								break;
 							case 4:
+								System.out.println("Enter financial year to get statement ");
+								int year=sc.nextInt();
+								List<String> liFin=dao.viewAccountStatements(currentUser,year);
+								liFin.forEach(str->System.out.println(str));
 								break;
 							case 5:
 								System.out.println("Enter account no to transfer");
@@ -286,6 +292,45 @@ public class MyApp {
 		    	System.out.println(message);
 		    	break;
 	        case 4:
+	        	System.out.println("1.Forget Id ?");
+	        	System.out.println("2.Forget password");
+	        	System.out.println("3.Exit");
+	        	try {
+					
+	        		int choiceReset=sc.nextInt();
+	        		switch (choiceReset) {
+	        		case 1:
+	        			System.out.println("Enter your account number");
+	        			int accId=sc.nextInt();
+	        			System.out.println("Enter your aadhar number");
+	        			int aadhar=sc.nextInt();
+	        			System.out.println("Enter otp received on your registered mobile number");
+	        			int otp=sc.nextInt();
+	        			String username= dao.getUserName(accId,aadhar,otp);
+	        			System.out.println(username);
+	        			break;
+	        		case 2:
+	        			System.out.println("Enter your account number");
+	        			int accId1=sc.nextInt();
+	        			System.out.println("Enter your aadhar number");
+	        			int aadhar1=sc.nextInt();
+	        			System.out.println("Enter otp received on your registered mobile number");
+	        			int otp1=sc.nextInt();
+	        			String passString1= dao.getUserPassword(accId1,aadhar1,otp1);
+	        			System.out.println(passString1);
+	        			break;
+	        		case 3:
+	        			System.out.println("Thank you and Visit Again");
+	        			break;
+	        		default:
+	        			System.out.println("Invalid input");
+	        			break;
+					}
+	        		
+	        		
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
 	        	break;
             case 5:
             	System.out.println("Thank you and Visit Again");

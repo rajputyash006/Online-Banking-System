@@ -89,9 +89,30 @@ public class CustomerImpl implements CustomerDao{
 	}
 
 	@Override
-	public List<String> viewTransactions() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> viewTransactions(Customer cus) {
+		List<String> li=new ArrayList<String>();
+		
+		try(Connection conn= DBUtil.provideConnection()) {
+			
+			PreparedStatement ps=conn.prepareStatement("select * from transactions where accId=cus.getAccountNumber()");
+			
+			ResultSet rs= ps.executeQuery();
+			while(rs.next()) {
+				int txdid=rs.getInt("txdId");
+				int txdAcc=rs.getInt("txdAccount");
+				int txdAmt=rs.getInt("txdAmount");
+				Date da=rs.getDate("txtDateTime");
+				int txdAccId=rs.getInt("accId");
+				
+				String txd="Transfer of "+txdAmt+" rupees from account number "+txdAcc+" on "+da+" and transaction id is "+txdid;
+				li.add(txd);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return li;
 	}
 
 	@Override
@@ -122,9 +143,31 @@ public class CustomerImpl implements CustomerDao{
 	}
 
 	@Override
-	public List<String> viewAccountStatements() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> viewAccountStatements(Customer customer,int year) {
+		List<String> li=new ArrayList<String>();
+		
+		try(Connection conn= DBUtil.provideConnection()) {
+			
+			PreparedStatement ps=conn.prepareStatement("select * from transactions INNER JOIN customers ON accId=accountNumber AND accId="+customer.getAccountNumber()+" AND txtDateTime>'"+year+"-01-01' AND txtDateTime<'"+year+"-12-31'");
+			
+			ResultSet rs= ps.executeQuery();
+			while(rs.next()) {
+				int txdid=rs.getInt("txdId");
+				int txdAcc=rs.getInt("txdAccount");
+				int txdAmt=rs.getInt("txdAmount");
+				Date da=rs.getDate("txtDateTime");
+				int txdAccId=rs.getInt("accId");
+				
+				String txd="Transfer of "+txdAmt+" rupees from account number "+txdAcc+" on "+da+" and transaction id is "+txdid;
+				li.add(txd);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return li;
+		
 	}
 
 	@Override
@@ -133,11 +176,6 @@ public class CustomerImpl implements CustomerDao{
 		return null;
 	}
 
-	@Override
-	public String orderChequeBookCards() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Customer provideUserObject(String username) {
@@ -182,7 +220,57 @@ public class CustomerImpl implements CustomerDao{
 		return cus;
 	}
 
-	
-	
 
+	@Override
+	public String getUserName(int accId, int aadhar, int otp) {
+		String userName="User not found";
+		
+		if(aadhar!=123456789 || otp!=12345) {
+			return "Invalid aadhar or otp";
+		}
+		
+		try(Connection conn=DBUtil.provideConnection()) {
+			PreparedStatement ps=conn.prepareStatement("select * from customers where accountNumber=?");
+			ps.setInt(1, accId);
+			
+			ResultSet rs= ps.executeQuery();
+			while(rs.next()) {
+				userName="Your user name is "+rs.getString("userName");
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		return userName;
+	}
+
+
+	@Override
+	public String getUserPassword(int accId1, int aadhar1, int otp1) {
+		String userName="User not found";
+		
+		if(aadhar1!=123456789 || otp1!=12345) {
+			return "Invalid aadhar or otp";
+		}
+		
+		try(Connection conn=DBUtil.provideConnection()) {
+			PreparedStatement ps=conn.prepareStatement("select * from customers where accountNumber=?");
+			ps.setInt(1, accId1);
+			
+			ResultSet rs= ps.executeQuery();
+			while(rs.next()) {
+				userName="Your password is "+rs.getString("password");
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		return userName;
+	}
+
+	
 }

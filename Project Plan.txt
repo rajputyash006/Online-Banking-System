@@ -30,8 +30,6 @@ Account-to-Account transfer
 
 ATM & Bank Locator
 
-Order for a cheque book and Cards
-
 
 -------------------Admin service-------------------
 
