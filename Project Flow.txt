@@ -28,7 +28,7 @@ txdAccount int not null,
 txdAmount double not null,
 txtDateTime date not null,          
 accId int not null, 
-foreign key (accId) references customers(accountNumber)
+foreign key (accId) references customers(accountNumber) on delete cascade
 );
 
 alter table transactions auto_increment=5215451;

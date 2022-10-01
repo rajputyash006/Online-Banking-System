@@ -4,14 +4,23 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.masai.Exception.CustomerException;
 import com.masai.model.Customer;
 import com.masai.utility.DBUtil;
 import com.mysql.cj.xdevapi.Result;
 
 public class CustomerImpl implements CustomerDao{
+	
+	
+	private static java.sql.Date getCurrentDate() {
+	    java.util.Date today = new java.util.Date();
+	    return new java.sql.Date(today.getTime());
+	}
 
 	
 	@Override
@@ -55,6 +64,7 @@ public class CustomerImpl implements CustomerDao{
 	public String fundTransefer(Customer cuss,int accNo,double amt) {
 		String message="Error occure";
 		
+		
 		if(cuss.getAccountBalance()<amt || amt<0) {
 			message="Insuficent balance";
 			return message;
@@ -68,10 +78,11 @@ public class CustomerImpl implements CustomerDao{
 			ps.setInt(1,cuss.getAccountNumber());
 			int x=ps.executeUpdate();
 			
+			
 			PreparedStatement ps2= conn.prepareStatement("insert into transactions(txdAccount,txdAmount,txtDateTime,accId) values(?,?,?,?)");
 			ps2.setInt(1, accNo);
 			ps2.setDouble(2, amt);
-			ps2.setString(3,"1999/08/20");
+			ps2.setDate(3,getCurrentDate());
 			ps2.setInt(4,cuss.getAccountNumber());
 			int y=ps2.executeUpdate();
 			if(x>0 && y>0) {
@@ -170,15 +181,10 @@ public class CustomerImpl implements CustomerDao{
 		
 	}
 
-	@Override
-	public List<String> atmBankLocator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 	@Override
-	public Customer provideUserObject(String username) {
+	public Customer provideUserObject(String username) throws CustomerException {
 		Customer cus = new Customer();
 		
 		try(Connection conn=DBUtil.provideConnection()) {
@@ -188,7 +194,7 @@ public class CustomerImpl implements CustomerDao{
 			ResultSet rs= ps.executeQuery();
 			
 			
-			while(rs.next()) {
+			if(rs.next()) {
 				int accNo=rs.getInt("accountNumber");
 				String accType=rs.getString("accountType");
 				String fName=rs.getString("firstName");
@@ -210,6 +216,8 @@ public class CustomerImpl implements CustomerDao{
 				cus.setUsername(userName);
 				cus.setPassword(pass);
 				cus.setAccountBalance(Bal);
+			}else {
+				throw new CustomerException("Invalid Username");
 			}
 			
 			

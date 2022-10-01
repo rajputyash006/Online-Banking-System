@@ -181,9 +181,7 @@ public class MyApp {
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}
-					
-					
-					
+						
 				}
 				else {
 					System.out.println("Invaid user or password");
@@ -208,8 +206,7 @@ public class MyApp {
 						System.out.println("3.View all Transactions");
 						System.out.println("4.View financial account statements online");
 						System.out.println("5.Account-to-Account transfer");
-						System.out.println("6.ATM & Bank Locator");
-						System.out.println("7.Exit");
+						System.out.println("6.Exit");
 						
 						System.out.println("");
 						System.out.println("*******************************************");
@@ -245,8 +242,6 @@ public class MyApp {
 								System.out.println(message);
 								break;
 							case 6:
-								break;
-							case 7:
 								System.out.println("Thank you and Visit Again");
 								break;
 							default :

@@ -6,13 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.masai.Exception.CustomerException;
 import com.masai.model.Customer;
 import com.masai.utility.DBUtil;
 
 public class AdminImpl implements AdminDao{
 
 	@Override
-	public Customer customerDetails(int accNo) {
+	public Customer customerDetails(int accNo) throws CustomerException {
 		Customer customer=new Customer();
 		
 		try(Connection conn=DBUtil.provideConnection()) {
@@ -22,7 +24,7 @@ public class AdminImpl implements AdminDao{
 			ResultSet rs= ps.executeQuery();
 			
 			
-			while(rs.next()) {
+			if(rs.next()) {
 				String accType=rs.getString("accountType");
 				String fName=rs.getString("firstName");
 				String lName=rs.getString("lastName");
@@ -44,6 +46,9 @@ public class AdminImpl implements AdminDao{
 				customer.setPassword(pass);
 				customer.setAccountBalance(Bal);
 			}
+			else {
+				throw new CustomerException("Customer not found with account number "+accNo);
+			}
 			
 			
 		} catch (SQLException e) {
@@ -57,7 +62,7 @@ public class AdminImpl implements AdminDao{
 
 
 	@Override
-	public String closeCustomerAccount(int accNo) {
+	public String closeCustomerAccount(int accNo) throws CustomerException {
 		String message="Not deleted";
 		try(Connection conn= DBUtil.provideConnection()) {
 			
@@ -69,7 +74,7 @@ public class AdminImpl implements AdminDao{
 				message="Customer account deleted successfully";
 			}
 			else {
-				message="Fail to deleted account";
+				throw new CustomerException("Invalid account number");
 			}
 			
 		} catch (SQLException e) {
@@ -82,7 +87,7 @@ public class AdminImpl implements AdminDao{
 	}
 
 	@Override
-	public List<Customer> allCustomerView() {
+	public List<Customer> allCustomerView() throws CustomerException {
 		List<Customer> cusList=new ArrayList<Customer>();
 		
 		
@@ -124,13 +129,16 @@ public class AdminImpl implements AdminDao{
 			System.out.println(e.getMessage());
 		}
 		
+		if(cusList.size()==0) {
+			throw new CustomerException("No customer found");
+		}else
 		return cusList;
 	}
 
 
 
 	@Override
-	public String updateCustomerFirstName(int acc, String fname) {
+	public String updateCustomerFirstName(int acc, String fname) throws CustomerException {
 		String message="Not updated";
 		try(Connection conn= DBUtil.provideConnection()) {
 			
@@ -142,13 +150,12 @@ public class AdminImpl implements AdminDao{
 				message="First name updated successfully";
 			}
 			else {
-				message="Fail to update first name";
+				throw new CustomerException("Failed to update first name due Invalid input");
 			}
 			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		
 		
 		return message;
 	}
@@ -156,7 +163,7 @@ public class AdminImpl implements AdminDao{
 
 
 	@Override
-	public String updateCustomerLastName(int acc, String lname) {
+	public String updateCustomerLastName(int acc, String lname) throws CustomerException {
 		String message="Not updated";
 		try(Connection conn= DBUtil.provideConnection()) {
 			
@@ -168,7 +175,7 @@ public class AdminImpl implements AdminDao{
 				message="Last name updated successfully";
 			}
 			else {
-				message="Fail to update last name";
+				throw new CustomerException("Failed to update last name due Invalid input");
 			}
 			
 		} catch (SQLException e) {
@@ -182,7 +189,7 @@ public class AdminImpl implements AdminDao{
 
 
 	@Override
-	public String updateCustomerMobileNo(int acc, String mobile) {
+	public String updateCustomerMobileNo(int acc, String mobile) throws CustomerException {
 		String message="Not updated";
 		try(Connection conn= DBUtil.provideConnection()) {
 			
@@ -194,7 +201,7 @@ public class AdminImpl implements AdminDao{
 				message="Mobile number updated successfully";
 			}
 			else {
-				message="Fail to update mobile number";
+				throw new CustomerException("Failed to update mobile number due Invalid input");
 			}
 			
 		} catch (SQLException e) {
@@ -208,7 +215,7 @@ public class AdminImpl implements AdminDao{
 
 
 	@Override
-	public String updateCustomerEmail(int acc, String email) {
+	public String updateCustomerEmail(int acc, String email) throws CustomerException {
 		String message="Not updated";
 		try(Connection conn= DBUtil.provideConnection()) {
 			
@@ -220,7 +227,7 @@ public class AdminImpl implements AdminDao{
 				message="Email updated successfully";
 			}
 			else {
-				message="Fail to update Email";
+				throw new CustomerException("Failed to update email id due Invalid input");
 			}
 			
 		} catch (SQLException e) {
@@ -235,7 +242,7 @@ public class AdminImpl implements AdminDao{
 
 
 	@Override
-	public String updateCustomerUserName(int acc, String username) {
+	public String updateCustomerUserName(int acc, String username) throws CustomerException {
 		String message="Not updated";
 		try(Connection conn= DBUtil.provideConnection()) {
 			
@@ -247,7 +254,7 @@ public class AdminImpl implements AdminDao{
 				message="Username updated successfully";
 			}
 			else {
-				message="Fail to update Username";
+				throw new CustomerException("Failed to update username due Invalid input");
 			}
 			
 		} catch (SQLException e) {
@@ -260,7 +267,7 @@ public class AdminImpl implements AdminDao{
 
 
 	@Override
-	public String updateCustomerPassword(int acc, String password) {
+	public String updateCustomerPassword(int acc, String password) throws CustomerException {
 		String message="Not updated";
 		try(Connection conn= DBUtil.provideConnection()) {
 			
@@ -272,7 +279,7 @@ public class AdminImpl implements AdminDao{
 				message="Password updated successfully";
 			}
 			else {
-				message="Fail to update Password";
+				throw new CustomerException("Failed to update password due Invalid input");
 			}
 			
 		} catch (SQLException e) {

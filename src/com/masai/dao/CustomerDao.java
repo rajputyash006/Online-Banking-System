@@ -2,6 +2,7 @@ package com.masai.dao;
 
 import java.util.List;
 
+import com.masai.Exception.CustomerException;
 import com.masai.model.Customer;
 
 public interface CustomerDao {
@@ -16,9 +17,7 @@ public interface CustomerDao {
 	
 	public List<String> viewAccountStatements(Customer customer,int year);
 	
-	public List<String> atmBankLocator();
-	
-	public Customer provideUserObject(String username);
+	public Customer provideUserObject(String username) throws CustomerException;
 
 	public String getUserName(int accId, int aadhar, int otp);
 
