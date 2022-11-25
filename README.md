@@ -18,17 +18,18 @@ This project is developed by me during construct week of Masai School.
 
 # Features
 - Customer Features:
-  1.Balance
-  2.Transactions
-  3.View last 10 Transactions
-  4.View account statements online
-  5.Account-to-Account transfer
+- 1.Balance
+- 2.Transactions
+- 3.View last 10 Transactions
+- 4.View account statements online
+- 5.Account-to-Account transfer
+
 
 - Admin Features:
-  1.View customer details with account number or cutomer id or mobile number
-  2.Update customer details 
-  3.close customer account 
-  4.View all customer of bank 
+- 1.View customer details with account number or cutomer id or mobile number
+- 2.Update customer details 
+- 3.close customer account 
+- 4.View all customer of bank 
 
 # Contributors
 - https://github.com/rajputyash006
