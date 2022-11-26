@@ -8,6 +8,7 @@ This project is developed by me during construct week of Masai School.
 
 # Tech Stack
 - Core Java
+- JDBC
 - MySQL
 
 # Modules
