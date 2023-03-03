@@ -1,4 +1,4 @@
- # Online Banking (Online Banking System - Console Based)
+ # Online Banking System ( Console Based Application )
 
 <img src="https://businessinspection.com.bd/wp-content/uploads/2022/04/Internet-Banking-Transactions-Tripled-and-Users-Doubled-Despite-Economic-Recovery.jpg" alt="Banking image not found" width="80%"/>
 <br>
